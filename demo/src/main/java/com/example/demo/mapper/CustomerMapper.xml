@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CustomerMapper">
+    <select id="selectCustomerPage" resultType="com.example.demo.entity.Customer">
+        select * from management.customer
+        <where>
+            <if test="keyword !=null and keyword !='' ">
+                or custlogin like CONCAT('%',#{keyword},'%')
+                or custpass like CONCAT('%',#{keyword},'%')
+                or custname like CONCAT('%',#{keyword},'%')
+                or phone like CONCAT('%',#{keyword},'%')
+                or custsex like CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

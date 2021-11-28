@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.StockMapper">
+    <select id="selectStockPage" resultType="com.example.demo.entity.Stock">
+        select * from stock
+        <where>
+            <if test="keyword !=null and keyword !='' ">
+                or commid like CONCAT('%',#{keyword},'%')
+                or skmoney like CONCAT('%',#{keyword},'%')
+                or sknumber like CONCAT('%',#{keyword},'%')
+                or totalprice like CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

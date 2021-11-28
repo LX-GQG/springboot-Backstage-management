@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.GoodMapper">
+    <select id="selectGoodPage" resultType="com.example.demo.entity.Good">
+        select * from management.good
+        <where>
+            <if test="keyword !=null and keyword !='' ">
+                or commname like CONCAT('%',#{keyword},'%')
+                or commoney like CONCAT('%',#{keyword},'%')
+                or commdesc like CONCAT('%',#{keyword},'%')
+                or providerid like CONCAT('%',#{keyword},'%')
+                or commbering like CONCAT('%',#{keyword},'%')
+                or size like CONCAT('%',#{keyword},'%')
+                or inventory like CONCAT('%',#{keyword},'%')
+                or picture like CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectname" resultType="com.example.demo.entity.Good">
+        SELECT * FROM good
+        <where>
+            <if test="keyword !=null and keyword !='' ">
+                or providerid LIKE CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectgood" resultType="com.example.demo.entity.Good">
+        SELECT * FROM good WHERE commname LIKE CONCAT('%',#{keyword},'%')
+    </select>
+
+</mapper>

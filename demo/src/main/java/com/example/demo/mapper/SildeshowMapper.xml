@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SildeshowMapper">
+    <select id="selectSildeshowPage" resultType="com.example.demo.entity.Sildeshow">
+        select * from management.sildeshow
+        <where>
+            <if test="keyword !=null and keyword !='' ">
+                or title like CONCAT('%',#{keyword},'%')
+                or image like CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

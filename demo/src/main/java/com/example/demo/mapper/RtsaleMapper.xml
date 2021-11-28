@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.RtsaleMapper">
+    <select id="selectRtsalePage" resultType="com.example.demo.entity.Rtsale">
+        select * from rtsale
+        <where>
+            <if test="keyword !=null and keyword !='' ">
+                or commid like CONCAT('%',#{keyword},'%')
+                or rtsmoney like CONCAT('%',#{keyword},'%')
+                or rtsnumber like CONCAT('%',#{keyword},'%')
+                or rtsmark like CONCAT('%',#{keyword},'%')
+                or rtstime like CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

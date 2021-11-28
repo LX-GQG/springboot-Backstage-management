@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ProviderMapper">
+    <select id="selectProviderPage" resultType="com.example.demo.entity.Provider">
+        select * from provider
+        <where>
+            <if test="keyword !=null and keyword !='' ">
+                or pvename like CONCAT('%',#{keyword},'%')
+                or pvephone like CONCAT('%',#{keyword},'%')
+                or pveaddress like CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

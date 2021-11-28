@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SaleMapper">
+    <select id="selectSalePage" resultType="com.example.demo.entity.Sale">
+        select * from sale
+        <where>
+            <if test="keyword !=null and keyword !='' ">
+                or custid like CONCAT('%',#{keyword},'%')
+                or commid like CONCAT('%',#{keyword},'%')
+                or salemount like CONCAT('%',#{keyword},'%')
+                or salemoney like CONCAT('%',#{keyword},'%')
+                or allmoney like CONCAT('%',#{keyword},'%')
+                or saletime like CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectSalemonth" resultType="com.example.demo.entity.Sale">
+        select * from sale
+        <where>
+            <if test="keyword !=null and keyword !='' ">
+                date_format(saletime,'%Y-%m')=date_format(CONCAT('%',#{keyword},'%'),'%Y-%m')
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
